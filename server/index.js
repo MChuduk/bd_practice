@@ -1,7 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = require('./router.js');
 
 const app = express();
+
+app.use(express.json());
+app.use('/api', router);
 
 app.listen(3000, () => console.log('server has been started'));
 
@@ -17,7 +21,3 @@ async function start(){
 }
 
 start();
-
-app.get('/', (req, res) => {
-
-});
