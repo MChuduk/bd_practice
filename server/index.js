@@ -1,10 +1,13 @@
 const express = require('express');
+const expressFileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
-const router = require('./router.js');
+const router = require('./routers/router.js');
 
 const app = express();
 
 app.use(express.json());
+app.use(express.static('static'));
+app.use(expressFileUpload({}));
 app.use('/api', router);
 
 app.listen(3000, () => console.log('server has been started'));

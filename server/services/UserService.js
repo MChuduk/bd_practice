@@ -1,5 +1,7 @@
 const userModel = require("../models/userModel");
 
+const fileService = require("../services/FileService");
+
 class UserService {
     async getAll() {
         const users = await userModel.find();
@@ -14,8 +16,9 @@ class UserService {
         return user;
     }
 
-    async create(user) {
-        const newUser = await userModel.create(user);
+    async create(user, picture) {
+        const pictureName = fileService.saveFile(picture);
+        const newUser = await userModel.create({...user, picture: pictureName});
         return newUser;
     }
 
